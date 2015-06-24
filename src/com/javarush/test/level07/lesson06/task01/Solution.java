@@ -16,12 +16,15 @@ public class Solution
     public static void main(String[] args) throws Exception
     {
         ArrayList<String> strings = new ArrayList<String>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int i = 0; i < 5; i++)
-        {
-            strings.add(reader.readLine());
-        }
+        strings.add("Kaka");
+        strings.add("Syka");
+        strings.add("Paka");
+        strings.add("Muka");
+        strings.add("Zaka");
+
+
+
         System.out.println(strings.size());
 
         for (int i = 0; i < 5; i++)
