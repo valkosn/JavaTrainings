@@ -12,21 +12,22 @@ public class Solution
 {
     public static void main(String[] args)
     {
-
-        Human grandfather1 = new Human("grandfather1", true, 85, null);
-        Human grandfather2 = new Human("grandfather2", true, 88, null);
-
-        Human grandmother1 = new Human("grandmother1", false, 75, null);
-        Human grandmother2 = new Human("grandmother2", false, 78, null);
-
-        Human father = new Human("father", true, 48, null );
-        Human mother = new Human("mother", false, 41, null);
-
-        Human child1 =new Human("child1", true, 12,null);
-        Human child2 =new Human("child2", true, 8,null);
-        Human child3 =new Human("child3", false, 6,null);
-
         ArrayList<Human> children = new ArrayList<>();
+
+        Human grandfather1 = new Human("grandfather1", true, 85, children);
+        Human grandfather2 = new Human("grandfather2", true, 88, children);
+
+        Human grandmother1 = new Human("grandmother1", false, 75, children);
+        Human grandmother2 = new Human("grandmother2", false, 78, children);
+
+        Human father = new Human("father", true, 48, children);
+        Human mother = new Human("mother", false, 41, children);
+
+        Human child1 =new Human("child1", true, 12,children);
+        Human child2 =new Human("child2", true, 8,children);
+        Human child3 =new Human("child3", false, 6,children);
+
+
 
         children.add(child1);
         children.add(child2);
