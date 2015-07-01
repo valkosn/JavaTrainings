@@ -13,25 +13,27 @@ public class Solution
     public static void main(String[] args)
     {
         ArrayList<Human> children = new ArrayList<>();
+        ArrayList<Human> children1 = new ArrayList<>();
+        ArrayList<Human> children2 = new ArrayList<>();
 
-        Human grandfather1 = new Human("grandfather1", true, 85, children);
-        Human grandfather2 = new Human("grandfather2", true, 88, children);
+        Human grandfather1 = new Human("grandfather1", true, 85, children1);
+        Human grandfather2 = new Human("grandfather2", true, 88, children2);
 
-        Human grandmother1 = new Human("grandmother1", false, 75, children);
-        Human grandmother2 = new Human("grandmother2", false, 78, children);
+        Human grandmother1 = new Human("grandmother1", false, 75, children1);
+        Human grandmother2 = new Human("grandmother2", false, 78, children2);
 
         Human father = new Human("father", true, 48, children);
         Human mother = new Human("mother", false, 41, children);
 
-        Human child1 =new Human("child1", true, 12,children);
-        Human child2 =new Human("child2", true, 8,children);
-        Human child3 =new Human("child3", false, 6,children);
-
-
+        Human child1 = new Human("child1", true, 12);
+        Human child2 = new Human("child2", true, 8);
+        Human child3 = new Human("child3", false, 6);
 
         children.add(child1);
         children.add(child2);
         children.add(child3);
+        children1.add(father);
+        children2.add(mother);
 
 
         System.out.println(grandfather1);
@@ -40,6 +42,9 @@ public class Solution
         System.out.println(grandmother2);
         System.out.println(father);
         System.out.println(mother);
+        System.out.println(child1);
+        System.out.println(child2);
+        System.out.println(child3);
 
     }
 
@@ -56,6 +61,14 @@ public class Solution
             this.sex = sex;
             this.age = age;
             this.children = children;
+
+        }
+
+        public Human(String name, boolean sex, int age)
+        {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
 
         }
 
