@@ -1,9 +1,9 @@
 package com.javarush.test.level08.lesson11.home09;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 /* Работа с датой
 1. Реализовать метод isDateOdd(String date) так, чтобы он возвращал true, если количество дней с начала года - нечетное число, иначе false
@@ -17,44 +17,47 @@ public class Solution
 {
     public static void main(String[] args)
     {
-
-        String date = "MAY 1 2013";
-
-        try
-        {
-            System.out.println(new SimpleDateFormat("MMMM d yyyy").parse(date));
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-
-
-
-
+        System.out.println(isDateOdd("JANUARY 1 2000"));
+        System.out.println(isDateOdd("JANUARY 2 2020"));
+        System.out.println(isDateOdd("DeCemBer 12 2020"));
+        System.out.println(isDateOdd("oCTOBER 8 2020"));
     }
 
     public static boolean isDateOdd(String date)
     {
-        try
+        date = date.toLowerCase();
+        char[] inputDateChars = date.toCharArray();
+
+        boolean upper = true;
+        for (int i = 0; i < inputDateChars.length; i++)
         {
-            Date startDate = new SimpleDateFormat("MMM d yyyy").parse(date);
+            char space = ' ';
+            if (inputDateChars[i] == space)
+            {
+                upper = true;
+            } else if (upper)
+            {
+                inputDateChars[i] = Character.toUpperCase(inputDateChars[i]);
+                upper = false;
+            }
         }
-        catch (ParseException e)
+        String convertedInputDate = "";
+
+        for (char inputDateChar : inputDateChars)
         {
-            e.printStackTrace();
+            convertedInputDate += Character.toString(inputDateChar);
         }
 
 
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(Calendar.MONTH, Calendar.JANUARY);
-        endDate.set(Calendar.DATE, 1);
-        endDate.set(Calendar.HOUR, 0);
-        endDate.set(Calendar.MINUTE, 0);
-        endDate.set(Calendar.SECOND, 0);
-        endDate.set(Calendar.MILLISECOND, 0);
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MMMM d yyyy", Locale.ENGLISH);
+        LocalDate endDate = LocalDate.parse(convertedInputDate, formatDate);
+        LocalDate startDate = LocalDate.of(endDate.getYear(), 1, 1);
+        long diff = ChronoUnit.DAYS.between(startDate, endDate) + 1;
 
+        System.out.print(convertedInputDate.toUpperCase() + " = ");
+        return diff % 2 != 0;
 
-        return true;
     }
+
+
 }
