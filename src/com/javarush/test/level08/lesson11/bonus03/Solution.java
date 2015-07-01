@@ -2,6 +2,8 @@ package com.javarush.test.level08.lesson11.bonus03;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.*;
+
 
 /* Задача по алгоритмам
 Задача: Введи с клавиатуры 20 слов и выведи их в алфавитном порядке.
@@ -28,6 +30,17 @@ public class Solution
 
     public static void sort(String[] array)
     {
+        ArrayList<String> temp = new ArrayList<>();
+
+        for (int i = 0; i < array.length; i++)
+        {
+            temp.add(array[i]);
+        }
+
+        Collections.sort(temp);
+
+        temp.toArray(array);
+
         //напишите тут ваш код
     }
 
