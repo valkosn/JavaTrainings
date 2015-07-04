@@ -1,7 +1,5 @@
 package com.javarush.test.level09.lesson11.home06;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.ArrayList;
 
 /* Сказка «Красная Шапочка»
@@ -12,39 +10,50 @@ import java.util.ArrayList;
 PS: пирожки никто не ел. Их только несли. Волк чуток поел. А его потом убили.
 */
 
-public class Solution {
+public class Solution
+{
     public static LittleRedRidingHood hood = new LittleRedRidingHood();
     public static Grandmother grandmother = new Grandmother();
     public static Patty patty = new Patty();
     public static Woodman woodman = new Woodman();
     public static Wolf wolf = new Wolf();
 
-    public static void main(String[] args) {
-        //TODO: in progress...
+    public static void main(String[] args)
+    {
+        wolf.ate.add(hood);
+        wolf.ate.add(grandmother);
+        woodman.killed.add(wolf);
+
         // напишите тут ваш код
     }
 
     //красная шапочка
-    public static class LittleRedRidingHood extends StoryItem {
+    public static class LittleRedRidingHood extends StoryItem
+    {
     }
 
     //бабушка
-    public static class Grandmother extends StoryItem {
+    public static class Grandmother extends StoryItem
+    {
     }
 
     //пирожок
-    public static class Patty extends StoryItem {
+    public static class Patty extends StoryItem
+    {
     }
 
     //дровосек
-    public static class Woodman extends StoryItem {
+    public static class Woodman extends StoryItem
+    {
     }
 
     //волк
-    public static class Wolf extends StoryItem {
+    public static class Wolf extends StoryItem
+    {
     }
 
-    public static abstract class StoryItem {
+    public static abstract class StoryItem
+    {
         public ArrayList<StoryItem> killed = new ArrayList<StoryItem>();
         public ArrayList<StoryItem> ate = new ArrayList<StoryItem>();
     }
