@@ -17,7 +17,6 @@ public class Solution
 
     public static HashSet<String> createSet()
     {
-        // TODO: Unknown issue...
 
         Set<String> set = new HashSet<String>();
         set.add("Л1");
