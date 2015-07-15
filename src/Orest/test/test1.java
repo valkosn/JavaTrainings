@@ -1,4 +1,4 @@
-package Orest.test.fibonachi;
+package Orest.test;
 
 /**
  * Created by vsn on 15.07.15.
