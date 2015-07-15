@@ -1,8 +1,5 @@
 package com.javarush.test.level08.lesson11.home09;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /* Работа с датой
@@ -17,44 +14,54 @@ public class Solution
 {
     public static void main(String[] args)
     {
-
-        String date = "MAY 1 2013";
-
-        try
-        {
-            System.out.println(new SimpleDateFormat("MMMM d yyyy").parse(date));
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-
-
-
-
     }
 
     public static boolean isDateOdd(String date)
     {
-        try
+        date = date.toLowerCase();
+        char[] inputDateChars = date.toCharArray();
+
+        boolean upper = true;
+        for (int i = 0; i < inputDateChars.length; i++)
         {
-            Date startDate = new SimpleDateFormat("MMM d yyyy").parse(date);
+            char space = ' ';
+            if (inputDateChars[i] == space)
+            {
+                upper = true;
+            } else if (upper)
+            {
+                inputDateChars[i] = Character.toUpperCase(inputDateChars[i]);
+                upper = false;
+            }
         }
-        catch (ParseException e)
+        String convertedInputDate = "";
+
+        for (char inputDateChar : inputDateChars)
         {
-            e.printStackTrace();
+            convertedInputDate += Character.toString(inputDateChar);
         }
 
 
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(Calendar.MONTH, Calendar.JANUARY);
-        endDate.set(Calendar.DATE, 1);
-        endDate.set(Calendar.HOUR, 0);
-        endDate.set(Calendar.MINUTE, 0);
-        endDate.set(Calendar.SECOND, 0);
-        endDate.set(Calendar.MILLISECOND, 0);
+        Date date1 = new Date(convertedInputDate);
+        Date date2 = new Date();
+        date2.setYear(date1.getYear());
+        date2.setMonth(0);
+        date2.setDate(1);
+        long msTimeDistance = date1.getTime() - date2.getTime();
+        long msDay = 24 * 60 * 60 * 1000;  //сколько миллисекунд в одних сутках
 
+        int dayCount = (int) (msTimeDistance / msDay);
 
-        return true;
+//        System.out.println(date1);
+//        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MMMM d yyyy", Locale.ENGLISH);
+//        LocalDate endDate = LocalDate.parse(convertedInputDate, formatDate);
+//        LocalDate startDate = LocalDate.of(endDate.getYear(), 1, 1);
+//        long diff = ChronoUnit.DAYS.between(startDate, endDate) + 1;
+
+        //System.out.print(convertedInputDate.toUpperCase() + " = ");
+        return dayCount % 2 != 0;
+
     }
+
+
 }

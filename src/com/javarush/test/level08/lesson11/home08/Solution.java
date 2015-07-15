@@ -1,18 +1,33 @@
 package com.javarush.test.level08.lesson11.home08;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.collections.transformation.SortedList;
-
-import javax.lang.model.type.ArrayType;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 /* Пять наибольших чисел
 Создать массив на 20 чисел. Заполнить его числами с клавиатуры. Вывести пять наибольших чисел.
+*/
+
+/*
+5
+25
+-58
+125
+324
+2
+6
+58
+4
+-25
+58
+4
+68
+15
+78
+68
+5
+2
+4
+6
 */
 
 public class Solution
@@ -37,26 +52,24 @@ public class Solution
 
     public static void sort(int[] array)
     {
-        //TODO:Test not successful;
 
 
-        Set<Integer> firstTemp = new HashSet<>();
-        ArrayList<Integer> secondTemp = new ArrayList<>();
-
-        for (int i = 0; i < array.length; i++)
+        boolean bubble = true;
+        while (bubble)
         {
-            firstTemp.add(array[i]);
-            array[i] =0;
+            bubble = false;
+            for (int i = 0; i < array.length - 1; i++)
+            {
+                if (array[i] < array[i + 1])
+                {
+                    int a = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = a;
+                    bubble = true;
+                }
+            }
         }
 
-        secondTemp.addAll(firstTemp);
-        Collections.sort(secondTemp);
-        Collections.reverse(secondTemp);
-
-        for (int i = 0; i < secondTemp.size(); i++)
-        {
-            array[i] = secondTemp.get(i);
-        }
         //напишите тут ваш код
     }
 }
