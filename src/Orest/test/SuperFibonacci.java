@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class SuperFibonacci
 {
 
-    public static long superFibArrayImpl(int n, int m)
+    public long superFibArrayImpl(int n, int m)
     {
 
         ArrayList<Long> result = new ArrayList<>();
@@ -37,7 +37,7 @@ public class SuperFibonacci
         return result.get(n - 1);
     }
 
-    /*public static long superFibCycleImpl(int n, int m)
+    /*public long superFibCycleImpl(int n, int m)
     {
         long result = 0;
         if (m >= 2)
