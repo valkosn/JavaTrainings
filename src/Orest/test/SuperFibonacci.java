@@ -10,46 +10,38 @@ public class SuperFibonacci
 
     public static void main(String[] args)
     {
-
+        System.out.println(superFibArrayImpl(6, 2));
+//        System.out.println(superFibArrayImpl(6, 3));
+//        System.out.println(superFibArrayImpl(6, 4));
     }
 
     public static long superFibArrayImpl(int n, int m)
     {
 
+        ArrayList<Long> result = new ArrayList<>();
+
         if (m >= 2)
         {
-            ArrayList<Long> result = new ArrayList<>();
-            for (int i = 0; i < m; i++)
+            for (int z = 0; z < m; z++)
             {
                 result.add(1L);
             }
-            for (int i = m; i < n - 1; i++)
+            for (int i = m; i < n; i++)
             {
+                long temp = 0;
+                for (int y = i - m; y < m; y++)
+                {
+                    temp = +result.get(y);
+                }
+                result.add(temp);
 
             }
+
 
         } else System.out.println("Value m is incorrect, must be >=2");
 
 
-        switch (n)
-        {
-
-            case 0:
-                return 0;
-            case 1:
-                return 1;
-            case -1:
-                return -1;
-        }
-        ArrayList<Long> result = new ArrayList<>();
-        result.add(0L);
-        result.add(1L);
-        for (int i = 2; i <= Math.abs(n); i++)
-        {
-            result.add(result.get(i - 1) + result.get(i - 2));
-        }
-
-        return n > 1 ? result.get(Math.abs(n)) : -result.get(Math.abs(n));
+        return result.get(n - 1);
     }
 
 
