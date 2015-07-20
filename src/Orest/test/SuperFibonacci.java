@@ -11,8 +11,8 @@ public class SuperFibonacci
     public static void main(String[] args)
     {
         System.out.println(superFibArrayImpl(6, 2));
-//        System.out.println(superFibArrayImpl(6, 3));
-//        System.out.println(superFibArrayImpl(6, 4));
+        System.out.println(superFibArrayImpl(6, 3));
+        System.out.println(superFibArrayImpl(6, 4));
     }
 
     public static long superFibArrayImpl(int n, int m)
@@ -22,16 +22,16 @@ public class SuperFibonacci
 
         if (m >= 2)
         {
-            for (int z = 0; z < m; z++)
+            for (int i = 0; i < m; i++)
             {
                 result.add(1L);
             }
             for (int i = m; i < n; i++)
             {
                 long temp = 0;
-                for (int y = i - m; y < m; y++)
+                for (int y = i - m; y < i; y++)
                 {
-                    temp = +result.get(y);
+                    temp += result.get(y);
                 }
                 result.add(temp);
 
