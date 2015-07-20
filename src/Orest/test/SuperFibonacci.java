@@ -8,13 +8,6 @@ import java.util.ArrayList;
 public class SuperFibonacci
 {
 
-    public static void main(String[] args)
-    {
-        System.out.println(superFibArrayImpl(6, 2));
-        System.out.println(superFibArrayImpl(6, 3));
-        System.out.println(superFibArrayImpl(6, 4));
-    }
-
     public static long superFibArrayImpl(int n, int m)
     {
 
@@ -44,5 +37,29 @@ public class SuperFibonacci
         return result.get(n - 1);
     }
 
+    /*public static long superFibCycleImpl(int n, int m)
+    {
+        long result = 0;
+        if (m >= 2)
+        {
+            long firstSum = 1;
+            for (int i = 0; i < m; i++)
+            {
+                firstSum += 1;
+            }
+            for (int i = m; i < n; i++)
+            {
+                long temp1 = firstSum;
+                long temp2 =
+
+            }
+
+
+        } else System.out.println("Value m is incorrect, must be >=2");
+
+
+        return result;
+
+    }*/
 
 }

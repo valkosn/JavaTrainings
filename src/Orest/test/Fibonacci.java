@@ -19,60 +19,15 @@ public class Fibonacci
         result[1] = 1L;
     }
 
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Availiable impementations:\n" +
-            "Array impl - 1\n" +
-            "Orest Array impl - 2\n" +
-            "Cycle impl - 3\n" +
-            "Recursive impl - 4\n" +
-            "Bine impl - 5\n" +
-            "EXIT - 0");
 
-        while (true)
-        {
-            System.out.print("What implementation you want to use? - ");
-            Implementations impl = Implementations.get(reader.readLine());
 
-            if (impl.equals(Implementations.EXIT))
-            {
-                return;
-            }
-
-            int n = getN(reader);
-            long lBegin = System.nanoTime();
-            long result = 0;
-            switch (impl)
-            {
-                case ARRAY_IMPL:
-                    result = fibonachiArrayImpl(n);
-                    break;
-                case OREST_ARRAY_IMPL:
-                    result = fibonachiArrayOrestImpl(n);
-                    break;
-                case CYCLE_IMPL:
-                    result = fibonachiCycleImpl(n);
-                    break;
-                case RECURSIVE_IMPL:
-                    result = fibonachiRecImpl(n);
-                    break;
-                case BINE_IMPL:
-                    result = fibonachiBineImpl(n);
-                case UNKNOWN_IMPL:
-                    break;
-            }
-            System.out.println(String.format("Result: %s \n\t%s elapsed time %s ns \n", result, impl.getMessage(), System.nanoTime() - lBegin));
-        }
-    }
-
-    private static int getN(BufferedReader reader) throws IOException
+    public static int getN(BufferedReader reader) throws IOException
     {
         System.out.print("Enter the order of the Fibonacci numbers - ");
         return Integer.parseInt(reader.readLine());
     }
 
-    public static long fibonachiArrayOrestImpl(int n)
+    public static long arrayOrestImpl(int n)
     {
         int absN = Math.abs(n);
         for (; maxGenerated <= absN; maxGenerated++)
@@ -82,7 +37,7 @@ public class Fibonacci
         return n > 1 ? result[absN] : -result[absN];
     }
 
-    public static long fibonachiArrayImpl(int n)
+    public static long arrayImpl(int n)
     {
         if (decision(n))
         {
@@ -99,7 +54,7 @@ public class Fibonacci
         return n > 1 ? result.get(Math.abs(n)) : -result.get(Math.abs(n));
     }
 
-    public static long fibonachiCycleImpl(int n)
+    public static long cycleImpl(int n)
     {
         if (decision(n))
         {
@@ -118,16 +73,16 @@ public class Fibonacci
         return n > 1 ? result : -result;
     }
 
-    public static long fibonachiRecImpl(int n)
+    public static long recImpl(int n)
     {
         if (decision(n))
         {
             return n;
         }
-        return n > 1 ? fibonachiRecImpl(n - 1) + fibonachiRecImpl(n - 2) : -(fibonachiRecImpl(Math.abs(n) - 1) + fibonachiRecImpl(Math.abs(n) - 2));
+        return n > 1 ? recImpl(n - 1) + recImpl(n - 2) : -(recImpl(Math.abs(n) - 1) + recImpl(Math.abs(n) - 2));
     }
 
-    public static long fibonachiBineImpl(int n)
+    public static long bineImpl(int n)
     {
         long result = Math.round(Math.pow(((1 + Math.sqrt(5)) / 2), Math.abs(n)) / Math.sqrt(5));
         return n >= 0 ? result : -result;
