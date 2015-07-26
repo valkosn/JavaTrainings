@@ -12,11 +12,15 @@ public class SuperFibonacci
 
     public static void main(String[] args)
     {
+        System.out.println(superFibArrayImpl(9, 4));
+        System.out.println(superFibArrayImpl(7, 3));
+        System.out.println(superFibArrayImpl(9, 5));
         System.out.println(superFibCycleImpl(9, 4));
         System.out.println(superFibCycleImpl(7, 3));
         System.out.println(superFibCycleImpl(9, 5));
-        System.out.println(superFibCycleImpl(2, 4));
-        System.out.println(superFibCycleImpl(1, 1));
+        System.out.println(superFibRecImpl(9, 4));
+        System.out.println(superFibRecImpl(7, 3));
+        System.out.println(superFibRecImpl(9, 5));
     }
 
     public static long superFibArrayImpl(int n, int m)
@@ -85,17 +89,35 @@ public class SuperFibonacci
     public static long superFibRecImpl(int n, int m)
 
     {
+        long result = 0;
         if (m >= 2)
         {
             if (m >= n) return 1;
             else
             {
+                LinkedList<Long> list = new LinkedList<>();
+                for (int i = 0; i < m; i++)
+                {
+                    list.add(1L);
+                }
+
+                    result = 0;
+                    for (Long l : list) result += l;
+
+                    list.removeFirst();
+                    list.add(result);
+
+                //TODO: incorrect recursive call
+                superFibRecImpl(n-1,m);
+
 
             }
 
+
         } else System.out.println(mIncorrect);
 
-        return 0;
+
+        return result;
     }
 }
 
