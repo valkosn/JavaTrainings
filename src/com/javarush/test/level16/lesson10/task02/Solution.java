@@ -16,7 +16,7 @@ public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
         RacingClock clock = new RacingClock();
-        Thread.sleep(countSeconds * 1010);
+        Thread.sleep(countSeconds * 1001);
         clock.interrupt();
         //add your code here - добавь код тут
     }
