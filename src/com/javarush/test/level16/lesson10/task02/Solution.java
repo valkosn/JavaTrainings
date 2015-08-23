@@ -31,9 +31,9 @@ public class Solution {
             while(!isInterrupted()){
                 try
                 {
-                    Thread.sleep(1000);
                     time -= 1000;
                     System.out.print(countSeconds + " ");
+                    Thread.sleep(1000);
                     countSeconds--;
                 }
                 catch (InterruptedException e)
