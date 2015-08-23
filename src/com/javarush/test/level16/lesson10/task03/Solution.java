@@ -10,6 +10,7 @@ public class Solution {
         //Add your code here - добавь код тут
         TestThread testThread = new TestThread();
         testThread.start();
+        Thread.sleep(2000);
         testThread.interrupt();
     }
 
@@ -18,6 +19,7 @@ public class Solution {
         @Override
         public void run() {
             while(!isInterrupted()){
+                System.out.println("2");
 
             }
         }

@@ -11,34 +11,23 @@ package com.javarush.test.level16.lesson10.task02;
 PS: метод sleep выбрасывает InterruptedException.
 */
 
-public class Solution
-{
-    public static volatile int countSeconds = 5;
+public class Solution {
+    public static volatile int countSeconds = 3;
 
-    public static void main(String[] args) throws InterruptedException
-    {
+    public static void main(String[] args) throws InterruptedException {
         RacingClock clock = new RacingClock();
-        //add your code here - добавь код тут
         Thread.sleep(3500);
         clock.interrupt();
-
+        //add your code here - добавь код тут
     }
 
-    public static class RacingClock extends Thread
-    {
-        public RacingClock()
-        {
+    public static class RacingClock extends Thread {
+        public RacingClock() {
             start();
         }
 
-        public void run()
-        {
-            //add your code here - добавь код тут
-            Thread current = Thread.currentThread();
-           boolean bbol = true;
-            while (!current.isInterrupted())
-            {
-
+        public void run() {
+            while(true){
                 try
                 {
                     Thread.sleep(1000);
@@ -47,13 +36,12 @@ public class Solution
                 }
                 catch (InterruptedException e)
                 {
-                    bbol = false;
+                    e.printStackTrace();
                     return;
                 }
-            }
 
-            if(bbol){System.out.print("Марш!");}
-            else System.out.print("Прервано!");
+            }
+            //add your code here - добавь код тут
         }
     }
 }
