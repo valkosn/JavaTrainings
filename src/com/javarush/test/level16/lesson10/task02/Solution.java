@@ -12,11 +12,11 @@ PS: метод sleep выбрасывает InterruptedException.
 */
 
 public class Solution {
-    public static volatile int countSeconds = 3;
+    public static volatile int countSeconds = 4;
 
     public static void main(String[] args) throws InterruptedException {
         RacingClock clock = new RacingClock();
-        Thread.sleep(3500);
+        Thread.sleep(countSeconds * 1010);
         clock.interrupt();
         //add your code here - добавь код тут
     }
@@ -27,16 +27,18 @@ public class Solution {
         }
 
         public void run() {
-            while(true){
+            int time = 3500;
+            while(!isInterrupted()){
                 try
                 {
                     Thread.sleep(1000);
+                    time -= 1000;
                     System.out.print(countSeconds + " ");
                     countSeconds--;
                 }
                 catch (InterruptedException e)
                 {
-                    e.printStackTrace();
+                    System.out.println(time < 0 ?  "Interupted" : "Marsh!");
                     return;
                 }
 
