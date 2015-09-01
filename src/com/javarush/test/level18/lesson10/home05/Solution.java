@@ -14,8 +14,42 @@ package com.javarush.test.level18.lesson10.home05;
 -3.51 - -4
 */
 
-public class Solution {
-    public static void main(String[] args) {
+import java.io.*;
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String pathFile1 = reader.readLine();
+        String pathFile2 = reader.readLine();
+        reader.close();
+
+        BufferedReader fileReader = new BufferedReader(new FileReader(pathFile1));
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(pathFile2));
+
+        while (fileReader.ready())
+        {
+
+            String dataString = fileReader.readLine();
+            String[] dataArrayString = dataString.split(" ");
+
+
+
+            for (String elem : dataArrayString)
+            {
+                String result = Math.round(Float.parseFloat(elem)) + " ";
+
+                fileWriter.write(result);
+            }
+
+        }
+
+        fileReader.close();
+        fileWriter.close();
+
 
     }
 }
