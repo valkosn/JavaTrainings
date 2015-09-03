@@ -1,6 +1,5 @@
 package test;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
@@ -11,9 +10,12 @@ public class test
 {
     public static void main(String[] args) throws Exception
     {
-        String str = "?????? ?????!!";
+
+        String str = "dfkgljdhfg 65324 dfgsdfg4654 321321вапыва ывап цукен вапывапЫВАПЫВП";
+
+
         char[] arrStr = str.toCharArray();
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/vsn/test12"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("d:\\test11.txt"));
 
 
         writer.write(arrStr, 0, arrStr.length);
