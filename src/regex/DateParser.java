@@ -20,7 +20,7 @@ public class DateParser
         String month = "Month - ";
         String day = "Day - ";
 
-        String data = "2015.111.26";
+        String data = "2015.11.26";
 
         Pattern pattern = Pattern.compile("^([12]\\d{3})\\.((0[1-9])|(1[0-2]))\\.((0[1-9])|([12][0-9])|(3[0-1]))");
         Matcher matcher = pattern.matcher(data);
