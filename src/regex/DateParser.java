@@ -14,30 +14,32 @@ import java.util.regex.Pattern;
 
 public class DateParser
 {
+    private static String year = "Year - ";
+    private static String month = "Month - ";
+    private static String day = "Day - ";
+
     public static void main(String[] args) throws IOException
     {
-        String year = "Year - ";
-        String month = "Month - ";
-        String day = "Day - ";
+        Pattern pattern1 = Pattern.compile("^([12]\\d{3})\\.((0[1-9])|(1[0-2]))\\.((0[1-9])|([12][0-9])|(3[0-1]))");
 
-        String data = "2015.11.26";
+        parseDate(pattern1, "2015.11.26");
 
-        Pattern pattern = Pattern.compile("^([12]\\d{3})\\.((0[1-9])|(1[0-2]))\\.((0[1-9])|([12][0-9])|(3[0-1]))");
+    }
+
+    public static void parseDate(Pattern pattern, String data)
+    {
         Matcher matcher = pattern.matcher(data);
-
-        matcher.find();
-        try
+        if (matcher.find())
         {
             year += matcher.group(1);
             month += matcher.group(2);
             day += matcher.group(5);
             System.out.println(year + "\n" + month + "\n" + day);
 
-        }
-        catch (IllegalStateException e)
-        {
-            System.out.println("Ops... I catch exception!");
-        }
+        } else
+
+            System.out.println("Ops... No matches find");
 
     }
+
 }
