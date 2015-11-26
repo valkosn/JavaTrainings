@@ -18,7 +18,7 @@ public class DateParser {
     private static String day = "Day - ";
 
     public static void main(String[] args) throws IOException {
-        String data = "2015.11.26 user=Serhii action=(drink beer) collaborators=Orest status=ready";
+        String data = "2015.11.26 user=Serhii action=(drink beer) participants=Orest status=ready";
 
         getDate(initPattern(), data);
 
@@ -27,8 +27,10 @@ public class DateParser {
     public static Pattern initPattern() {
         StringBuilder commonPattern = new StringBuilder();
         commonPattern.append("^(19[7-9]\\d|20[01]\\d)"); // year regex
-        commonPattern.append("\\.(0[1-9]|1[0-2])"); // month regex
-        commonPattern.append("\\.(0[1-9]|[12][0-9]|3[0-1])"); // day regex
+        commonPattern.append("\\."); // delimiter regex
+        commonPattern.append("(0[1-9]|1[0-2])"); // month regex
+        commonPattern.append("\\."); // delimiter regex
+        commonPattern.append("(0[1-9]|[12][0-9]|3[0-1])"); // day regex
 
         Pattern pattern = Pattern.compile(commonPattern.toString());
 
