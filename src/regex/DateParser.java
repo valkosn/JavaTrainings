@@ -26,11 +26,11 @@ public class DateParser {
 
     public static Pattern initPattern() {
         StringBuilder commonPattern = new StringBuilder();
-        commonPattern.append("^(19[7-9]\\d|20[01]\\d)"); // year regex
-        commonPattern.append("\\."); // delimiter regex
-        commonPattern.append("(0[1-9]|1[0-2])"); // month regex
-        commonPattern.append("\\."); // delimiter regex
-        commonPattern.append("(0[1-9]|[12][0-9]|3[0-1])"); // day regex
+        commonPattern.append("^(19[7-9]\\d|20[01]\\d)");    // year regex
+        commonPattern.append("\\.");                        // delimiter regex
+        commonPattern.append("(0[1-9]|1[0-2])");            // month regex
+        commonPattern.append("\\.");                        // delimiter regex
+        commonPattern.append("(0[1-9]|[12][0-9]|3[0-1])");  // day regex
 
         Pattern pattern = Pattern.compile(commonPattern.toString());
 
@@ -42,9 +42,9 @@ public class DateParser {
     public static void getDate(Pattern pattern, String data) {
         Matcher matcher = pattern.matcher(data);
         if (matcher.find()) {
-            year += matcher.group(1); // number of year group
-            month += matcher.group(2);  // number of month group
-            day += matcher.group(3);  // number of day group
+            year += matcher.group(1);                       // number of year group
+            month += matcher.group(2);                      // number of month group
+            day += matcher.group(3);                        // number of day group
             System.out.println(year + "\n" + month + "\n" + day);
 
         } else
