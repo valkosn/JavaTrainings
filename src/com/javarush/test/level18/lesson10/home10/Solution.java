@@ -14,14 +14,16 @@ import java.util.TreeMap;
 Файлы переписывать в строгой последовательности, сначала первую часть, потом вторую, ..., в конце - последнюю.
 Закрыть потоки. Не использовать try-with-resources
 */
-//TODO:in progress
+//TODO:done
 /*
 
-/home/vsn/WORK/test.txt.part5
-/home/vsn/WORK/test.txt.part2
-/home/vsn/WORK/test.txt.part4
-/home/vsn/WORK/test.txt.part3
-/home/vsn/WORK/test.txt.part1
+E:\Work\test\test.txt.part7
+E:\Work\test\test.txt.part2
+E:\Work\test\test.txt.part4
+E:\Work\test\test.txt.part3
+E:\Work\test\test.txt.part1
+E:\Work\test\test.txt.part6
+E:\Work\test\test.txt.part5
 end
 
 */
@@ -41,19 +43,20 @@ public class Solution {
         }
         reader.close();
 
-        FileOutputStream fileOutputStream = new FileOutputStream(filesMap.get(1).split(".part")[0]);
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filesMap.get(1).split(".part")[0]));
 
         for (Integer key : filesMap.keySet()) {
-            FileInputStream fileInputStream = new FileInputStream(filesMap.get(key));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filesMap.get(key)));
 
-            while (fileInputStream.available() > 0) {
+            while (bufferedReader.ready()) {
 
-                fileOutputStream.write(fileInputStream.read()); //TODO: Use buffer...
+                bufferedWriter.write(bufferedReader.read());
             }
 
-            fileInputStream.close();
+            bufferedReader.close();
         }
 
-        fileOutputStream.close();
+        bufferedWriter.close();
     }
 }
