@@ -1,5 +1,11 @@
 package com.javarush.test.level19.lesson10.home02;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+
 /* Самый богатый
 В метод main первым параметром приходит имя файла.
 В этом файле каждая строка имеет следующий вид:
@@ -19,8 +25,28 @@ package com.javarush.test.level19.lesson10.home02;
 Пример вывода:
 Петров
 */
-//TODO:new
+//TODO:done
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+
+        String fileName = args[0];
+        Map<String, Double> resultMap = new HashMap<>();
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        while (bufferedReader.ready()) {
+            String line = bufferedReader.readLine();
+            String name = line.split(" ")[0];
+            Double value = Double.parseDouble(line.split(" ")[1]);
+            Double tempValue = resultMap.get(name);
+            if (tempValue == null) resultMap.put(name, value);
+            else resultMap.put(name, tempValue + value);
+        }
+
+        bufferedReader.close();
+
+        Double maxValue = Collections.max(resultMap.values());
+        List<String> maxName = resultMap.keySet().stream().filter(key -> Objects.equals(resultMap.get(key), maxValue)).collect(Collectors.toList());
+        maxName.forEach(System.out::println);
     }
 }
