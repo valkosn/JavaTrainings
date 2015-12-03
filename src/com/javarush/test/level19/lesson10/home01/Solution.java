@@ -1,5 +1,12 @@
 package com.javarush.test.level19.lesson10.home01;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 /* Считаем зарплаты
 В метод main первым параметром приходит имя файла.
 В этом файле каждая строка имеет следующий вид:
@@ -21,8 +28,28 @@ package com.javarush.test.level19.lesson10.home01;
 Петров 5.1
 Сидоров 6.0
 */
-//TODO:new
+//TODO:done
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException
+    {
+
+        String fileName = args[0];
+        Map<String, Double> resultMap = new TreeMap<>();
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        while (bufferedReader.ready()) {
+            String line = bufferedReader.readLine();
+            String name = line.split(" ")[0];
+            Double value = Double.parseDouble(line.split(" ")[1]);
+            Double tempValue = resultMap.get(name);
+            if (tempValue == null) resultMap.put(name, value);
+            else if (tempValue != null) resultMap.put(name, tempValue + value);
+        }
+
+        for (String key : resultMap.keySet()) {
+
+            System.out.println(key + " " + resultMap.get(key));
+        }
+
     }
 }
