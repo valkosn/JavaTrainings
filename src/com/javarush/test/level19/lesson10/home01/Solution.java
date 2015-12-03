@@ -45,6 +45,7 @@ public class Solution {
             if (tempValue == null) resultMap.put(name, value);
             else if (tempValue != null) resultMap.put(name, tempValue + value);
         }
+        bufferedReader.close();
 
         for (String key : resultMap.keySet()) {
 
