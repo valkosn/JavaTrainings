@@ -12,11 +12,14 @@ import java.util.List;
 Метод main реализован только для вас и не участвует в тестировании
 */
 //TODO:new
-public class Solution {
-    public static void main(String[] args) {
+public class Solution
+{
+    public static void main(String[] args)
+    {
         //you can find your_file_name.tmp in your TMP directory or fix outputStream/inputStream according to your real file location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
-        try {
+        try
+        {
 
             File your_file_name = File.createTempFile("your_file_name", null);
             OutputStream outputStream = new FileOutputStream(your_file_name);
@@ -28,38 +31,71 @@ public class Solution {
 
             Human somePerson = new Human();
             somePerson.load(inputStream);
+            System.out.println(ivanov.equals(somePerson));
             //check here that ivanov equals to somePerson - проверьте тут, что ivanov и somePerson равны
             inputStream.close();
 
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             //e.printStackTrace();
             System.out.println("Oops, something wrong with my file");
-        } catch (Exception e) {
-            //e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
             System.out.println("Oops, something wrong with save/load method");
         }
     }
 
 
-    public static class Human {
+    public static class Human
+    {
         public String name;
         public List<Asset> assets = new ArrayList<>();
 
-        public Human() {
+        public Human()
+        {
         }
 
-        public Human(String name, Asset... assets) {
+        public Human(String name, Asset... assets)
+        {
             this.name = name;
-            if (assets != null) {
+            if (assets != null)
+            {
                 this.assets.addAll(Arrays.asList(assets));
             }
         }
 
-        public void save(OutputStream outputStream) throws Exception {
+        public void save(OutputStream outputStream) throws Exception
+        {
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.println(name);
+            String isAssetsPresent = assets.isEmpty() ? "no" : "yes";
+            printWriter.println(isAssetsPresent);
+            if (!assets.isEmpty())
+            {
+
+                printWriter.println(assets.size());
+                assets.forEach(printWriter::println);
+            }
+            printWriter.flush();
+
             //implement this method - реализуйте этот метод
         }
 
-        public void load(InputStream inputStream) throws Exception {
+        public void load(InputStream inputStream) throws Exception
+        {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            name = reader.readLine();
+            if (reader.readLine().equals("yes"))
+            {
+                int asSize = Integer.parseInt(reader.readLine());
+                for (int i = 0; i > asSize; i++){
+                   // assets.add(reader.readLine()); //TODO:"Fix it..."
+                }
+            }
+
             //implement this method - реализуйте этот метод
         }
     }

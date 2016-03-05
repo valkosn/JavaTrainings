@@ -13,10 +13,10 @@ import java.util.*;
 //TODO:done
 /*
 
-E:\Work\test\test1.txt
-E:\Work\test\test2.txt
-E:\Work\test\test3.txt
-E:\Work\test\test4.txt
+E:\Work\Test\test1.txt
+E:\Work\Test\test2.txt
+E:\Work\Test\test3.txt
+E:\Work\Test\test4.txt
 exit
 
 */

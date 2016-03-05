@@ -45,7 +45,7 @@ public class Solution {
     }
 
     public static class ClassWithStatic {
-        public static String staticString = "it's test static string";
+        public static String staticString = "it's Test static string";
         public int i;
         public int j;
 

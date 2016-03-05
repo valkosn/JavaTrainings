@@ -11,7 +11,7 @@ public class Solution {
     public static class TEST {
         @Override
         public String toString() {
-            return "test class";
+            return "Test class";
         }
     }
 

@@ -12,8 +12,8 @@ fileOutputName - имя файла, куда необходимо записат
 -e - ключ указывает, что необходимо зашифровать данные
 -d - ключ указывает, что необходимо расшифровать данные
 
-"-e E:\Work\test\test.txt E:\Work\test\enc.txt"
-"-d E:\Work\test\enc.txt E:\Work\test\dec.txt"
+"-e E:\Work\Test\Test.txt E:\Work\Test\enc.txt"
+"-d E:\Work\Test\enc.txt E:\Work\Test\dec.txt"
 */
 
 
