@@ -17,9 +17,9 @@ interface SpaceObject
 
     double getRadius();
 
-    List<SolarSystem> getTails();
+    List<SpaceObject> getTails();
 
-    SolarSystem getHead();
+    SpaceObject getHead();
 
     SpaceObjectType getType();
 
