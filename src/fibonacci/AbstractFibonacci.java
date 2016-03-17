@@ -14,14 +14,6 @@ public abstract class AbstractFibonacci implements Fibonacci
     result[1] = 1L;
   }
 
-  private String name;
-
-  @Override
-  public String getName()
-  {
-    return name;
-  }
-
   protected static boolean decision(int n)
   {
     switch (n) {

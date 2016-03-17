@@ -6,7 +6,5 @@ package fibonacci;
  */
 public interface Fibonacci
 {
-  String getName();
-
   long calculate(int n);
 }
