@@ -4,45 +4,83 @@
 
 package space;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Valko Serhii on 15.03.2016.
  */
-abstract class AbstractSpaceObject
+abstract class AbstractSpaceObject implements SpaceObject
 {
+
+    protected static List<SpaceObject> spaceObjectsList = new ArrayList<>();
     protected String name;
     protected double weight;
     protected double radius;
-    protected List<SolarSystem> tails;
+    protected SpaceObject head;
+    protected SpaceObjectType type;
 
-    AbstractSpaceObject(String name, double weight, double radius, List<SolarSystem> tails)
+    AbstractSpaceObject()
+    {
+
+    }
+
+    AbstractSpaceObject(String name, double weight, double radius, SpaceObject head, SpaceObjectType type)
     {
         this.name = name;
         this.weight = weight;
         this.radius = radius;
-        this.tails = tails;
+        this.head = head;
+        this.type = type;
     }
 
+    AbstractSpaceObject(String name, double weight, double radius, SpaceObjectType type)
+    {
+        this.name = name;
+        this.weight = weight;
+        this.radius = radius;
+        this.type = type;
+    }
 
+    @Override
     public String getName()
     {
         return name;
     }
 
+    @Override
     public double getWeight()
     {
         return weight;
     }
 
+    @Override
     public double getRadius()
     {
         return radius;
     }
 
-
-    public List<SolarSystem> getTails()
+    @Override
+    public List<SpaceObject> getTails()
     {
-        return tails;
+        List<SpaceObject> satellitesList = new ArrayList<>();
+        for (SpaceObject spaceObject : spaceObjectsList)
+        {
+            if (this.equals(spaceObject.getHead())) satellitesList.add(spaceObject);
+        }
+
+        return satellitesList;
+    }
+
+    @Override
+    public SpaceObject getHead()
+    {
+        return this.head;
+    }
+
+    @Override
+    public SpaceObjectType getType()
+    {
+        return this.type;
     }
 }
