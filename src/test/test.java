@@ -1,9 +1,13 @@
 package test;
 
 
+import com.javarush.test.level20.lesson02.task05.Solution;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Test
 {
@@ -20,16 +24,52 @@ public class Test
 //        System.out.println(list.set(2,3));
 //        System.out.println(list.get(2) + " " + list.size());
 
-        int f = 8;
-        int g = 5;
-
-        for (int i = 0; i <= 20; i++) {
-            System.out.println( f );
-            f = f + g;
-            g = f - g;
-        }
+        int[] array = {6,9,8};
+        List<Integer> list = new ArrayList<>();
+        list.add(array[0]);
+        list.add(array[2]);
+        list.set(1, array[1]);
+        list.remove( 0 );
+        System.out.println(list);
+//        Random rand = new Random();
+//        final int ITERATION = 30;
+//        final int BOUND = 20000;
+//        int globalCount, count;
+//        Integer i, y;
+//        boolean noResult, tempResult;
+//
+//        for(int a = 0; a < ITERATION; a++)
+//        {
+//            globalCount = 0;
+//            noResult = true;
+//            while (noResult)
+//            {
+//                count = 0;
+//                tempResult = true;
+//                while (tempResult)
+//                {
+//                    count++;
+//                    i = rand.nextInt(BOUND);
+//                    y = rand.nextInt(BOUND);
+//                    if (i.equals(y)) tempResult = false;
+//                }
+//                globalCount++;
+//                if (count == 1) noResult = false;
+//            }
+//
+//            System.out.println("gCount - " + globalCount);
+//        }
 
     }
+
+    @Override
+    protected void finalize() throws Throwable
+    {
+
+        super.finalize();
+
+    }
+
 
     static void test(Map map)
     {
@@ -70,8 +110,6 @@ public class Test
         System.out.println("Last element access time " + (stopTime - startTime) + "\n");
 
     }
-
-
 
 
 }
