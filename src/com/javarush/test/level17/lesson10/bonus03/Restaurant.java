@@ -8,7 +8,7 @@ package com.javarush.test.level17.lesson10.bonus03;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//TODO: Done
 public class Restaurant {
     public static List<Thread> threads = new ArrayList<>();
 
