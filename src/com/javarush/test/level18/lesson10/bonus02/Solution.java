@@ -2,7 +2,6 @@ package com.javarush.test.level18.lesson10.bonus02;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /* Прайсы
@@ -28,9 +27,10 @@ id productName price quantity
 */
 //TODO:done
 //D:\testTemp.txt
-//-c "Шорты пляжные" 159.00 12
+//-c "Шорты пляжные23" 159.00 12
 //-r 5
-
+//-u 3 "Шорты пляжные" 250.00 167
+//-d 2
 
 public class Solution
 {
@@ -45,7 +45,6 @@ public class Solution
 
     public static void main(String[] args) throws Exception
     {
-
         setFileCrUDPathFromConsole();
 
         String operationType = args[0];
@@ -87,13 +86,11 @@ public class Solution
             default:
                 throw new IllegalArgumentException("Incorrect operation type");
         }
-
-
     }
 
-    private static void createObjectInCrUD(String productName, String price, String quantity, String delimiter)
+    public static void createObjectInCrUD(String productName, String price, String quantity, String delimiter)
     {
-        Integer id = readCrUDFile((BufferedReader fileReader) -> {
+        Integer id = readCrUDFile((fileReader, localCrUDList) -> {
 
             String currId = fileReader.readLine().substring(0, ID_LENGTH).trim();
             return Integer.parseInt(currId) + 1;
@@ -104,14 +101,14 @@ public class Solution
         writeCrUDFile(() -> stringForWrite, true);
     }
 
-    private static void createObjectInCrUD(String productName, String price, String quantity)
+    public static void createObjectInCrUD(String productName, String price, String quantity)
     {
         createObjectInCrUD(productName, price, quantity, DELIMITER);
     }
 
-    private static String readObjectFromCrUD(String id)
+    public static String readObjectFromCrUD(String id)
     {
-        return readCrUDFile((BufferedReader bufferedReader) -> {
+        return readCrUDFile((bufferedReader, localCrUDList) -> {
 
             String result = bufferedReader.readLine();
 
@@ -119,10 +116,9 @@ public class Solution
         });
     }
 
-    private static boolean updateObjectInCrUD(String id, String productName, String price, String quantity)
+    public static boolean updateObjectInCrUD(String id, String productName, String price, String quantity)
     {
-        List<String> crUDList = readCrUDFile((BufferedReader bufferedReader) -> {
-            List<String> localCrUDList = new ArrayList<>();
+        List<String> crUDList = readCrUDFile((bufferedReader, localCrUDList) -> {
             localCrUDList.add(bufferedReader.readLine());
             return localCrUDList;
         });
@@ -130,17 +126,33 @@ public class Solution
         int index = -1;
         for (String item : crUDList)
         {
-            index = item.substring(0, ID_LENGTH).trim().equals(id) ? crUDList.indexOf(item) : -1;
+            if (item.substring(0, ID_LENGTH).trim().equals(id)) index = crUDList.indexOf(item);
         }
         if (index == -1) return false;
         crUDList.set(index, createStringForWrite(DELIMITER, id, productName, price, quantity));
+        try
+        {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileCrUDPath));
+            for (String s : crUDList)
+            {
+                writer.write(s + "\n");
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         //TODO: finish this...
 
         return true;
     }
 
-    private static void deleteObjectFromCrUD(String id)
+    public static void deleteObjectFromCrUD(String id)
     {
+        updateObjectInCrUD(id, correctLength("", PRODUCT_NAME_LENGTH), correctLength("", PRICE_LENGTH),
+                                correctLength("", QUANTITY_LENGTH));
         //TODO: implement this...
     }
 
@@ -166,7 +178,7 @@ public class Solution
 
     private static String createStringForWrite(String delimiter, String id, String productName, String price, String quantity)
     {
-        return String.join(delimiter, correctLength(id.toString(), ID_LENGTH), correctLength(productName, PRODUCT_NAME_LENGTH),
+        return String.join(delimiter, correctLength(id, ID_LENGTH), correctLength(productName, PRODUCT_NAME_LENGTH),
                 correctLength(price, PRICE_LENGTH), correctLength(quantity, QUANTITY_LENGTH));
     }
 
@@ -174,12 +186,13 @@ public class Solution
     {
         R result = null;
         R preResult;
+        List<String> localCrUDList = new ArrayList<>();
         try
         {
             BufferedReader fileReader = new BufferedReader(new FileReader(fileCrUDPath));
             while (fileReader.ready())
             {
-                preResult = function.apply(fileReader);
+                preResult = function.apply(fileReader, localCrUDList);
                 if (preResult != null) result = preResult;
             }
             fileReader.close();
@@ -195,9 +208,9 @@ public class Solution
     {
         try
         {
-            PrintStream printStream = new PrintStream(new FileOutputStream(fileCrUDPath, append), true);
-            printStream.println(supplier.get());
-            printStream.close();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileCrUDPath, append));
+            writer.write(supplier.get() + "\n");
+            writer.close();
         }
         catch (Exception e)
         {
@@ -205,11 +218,13 @@ public class Solution
         }
     }
 
+    @FunctionalInterface
     private interface MyFunction<R>
     {
-        R apply(BufferedReader bufferedReader) throws Exception;
+        R apply(BufferedReader bufferedReader, List<String> localCrUDList) throws Exception;
     }
 
+    @FunctionalInterface
     private interface MySupplier<T>
     {
         T get();
