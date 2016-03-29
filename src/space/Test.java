@@ -11,6 +11,6 @@ public class Test
 {
     public static void main(String[] args)
     {
-        System.out.println(SolarSystem.MOON.getHead().getRadius());
+//        System.out.println(SolarSystem.MOON.getHead().getRadius());
     }
 }
