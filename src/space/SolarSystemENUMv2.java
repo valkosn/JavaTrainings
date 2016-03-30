@@ -15,35 +15,34 @@ public enum SolarSystemENUMv2 implements SpaceObject
 {
 
     //Satellites
-    MOON("Moon", 7.342e22, 1737.1, SpaceObjectType.SATELLITE),
-    DEIMOS("Deimos", 1.4762e15, 6.2, SpaceObjectType.SATELLITE),
-    PHOBOS("Phobos", 1.0659e16, 11.2667, SpaceObjectType.SATELLITE),
-    GANYMEDE("Ganymede", 1.4819e23, 2634.1, SpaceObjectType.SATELLITE),
-    CALLISTO("Callisto", 1.075938e23, 2410.3, SpaceObjectType.SATELLITE),
-    IO("Io", 8.931938e22, 1821.6, SpaceObjectType.SATELLITE),
-    EUROPA("Europa", 4.799844e22, 1560.8, SpaceObjectType.SATELLITE),
-    TITAN("Titan", 1.3452e23, 2575.5, SpaceObjectType.SATELLITE),
-    ENCELADUS("Enceladus", 1.08022e20, 252.1, SpaceObjectType.SATELLITE),
-    TITANIA("Titania", 3.527e21, 788.4, SpaceObjectType.SATELLITE),
-    OBERON("Oberon", 3.014e21, 761.4, SpaceObjectType.SATELLITE),
-    UMBRIEL("Umbriel", 1.172e21, 584.7, SpaceObjectType.SATELLITE),
-    ARIEL("Ariel", 1.353e21, 578.9, SpaceObjectType.SATELLITE),
-    MIRANDA("Miranda", 6.59e19, 235.8, SpaceObjectType.SATELLITE),
-    TRITON("Triton", 2.14e22, 1353.4, SpaceObjectType.SATELLITE),
+    MOON("Moon", 7.342e22, 1737.1),
+    DEIMOS("Deimos", 1.4762e15, 6.2),
+    PHOBOS("Phobos", 1.0659e16, 11.2667),
+    GANYMEDE("Ganymede", 1.4819e23, 2634.1),
+    CALLISTO("Callisto", 1.075938e23, 2410.3),
+    IO("Io", 8.931938e22, 1821.6),
+    EUROPA("Europa", 4.799844e22, 1560.8),
+    TITAN("Titan", 1.3452e23, 2575.5),
+    ENCELADUS("Enceladus", 1.08022e20, 252.1),
+    TITANIA("Titania", 3.527e21, 788.4),
+    OBERON("Oberon", 3.014e21, 761.4),
+    UMBRIEL("Umbriel", 1.172e21, 584.7),
+    ARIEL("Ariel", 1.353e21, 578.9),
+    MIRANDA("Miranda", 6.59e19, 235.8),
+    TRITON("Triton", 2.14e22, 1353.4),
 
     //Planets
-    MERCURY("Mercury", 3.3011e23, 2439.7, SpaceObjectType.PLANET),
-    VENUS("Venus", 4.8675e24, 6051.8, SpaceObjectType.PLANET),
-    EARTH("Earth", 5.97237e24, 6371.0, Arrays.asList(MOON), SpaceObjectType.PLANET),
-    MARS("Mars", 6.4171e23, 3389.5, Arrays.asList(DEIMOS, PHOBOS), SpaceObjectType.PLANET),
-    JUPITER("Jupiter", 1.8986e27, 69911, Arrays.asList(GANYMEDE, CALLISTO, IO, EUROPA), SpaceObjectType.PLANET),
-    SATURN("Saturn", 5.6836e26, 58232, Arrays.asList(TITAN, ENCELADUS), SpaceObjectType.PLANET),
-    URANUS("Uranus", 8.6810e25, 25362, Arrays.asList(TITANIA, OBERON, UMBRIEL,ARIEL, MIRANDA), SpaceObjectType.PLANET),
-    NEPTUNE("Neptune", 1.0243e26, 24622, Arrays.asList(TRITON), SpaceObjectType.PLANET),
+    MERCURY("Mercury", 3.3011e23, 2439.7),
+    VENUS("Venus", 4.8675e24, 6051.8),
+    EARTH("Earth", 5.97237e24, 6371.0, MOON),
+    MARS("Mars", 6.4171e23, 3389.5, DEIMOS, PHOBOS),
+    JUPITER("Jupiter", 1.8986e27, 69911, GANYMEDE, CALLISTO, IO, EUROPA),
+    SATURN("Saturn", 5.6836e26, 58232, TITAN, ENCELADUS),
+    URANUS("Uranus", 8.6810e25, 25362, TITANIA, OBERON, UMBRIEL,ARIEL, MIRANDA),
+    NEPTUNE("Neptune", 1.0243e26, 24622, TRITON),
 
     //Suns
-    SUN("Sun", 1.98855e30, 695700, Arrays.asList(MERCURY, VENUS, EARTH, MARS, JUPITER,
-                                                SATURN, URANUS, NEPTUNE),SpaceObjectType.SUN);
+    SUN("Sun", 1.98855e30, 695700, MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE);
 
 
 
@@ -52,28 +51,26 @@ public enum SolarSystemENUMv2 implements SpaceObject
     private double radius;
     private SpaceObject head;
     private List<SpaceObject> tails;
-    private SpaceObjectType type;
 
-    SolarSystemENUMv2()
-    {
-
-    }
-
-    SolarSystemENUMv2(String name, double weight, double radius, List<SpaceObject> tails, SpaceObjectType type)
+    SolarSystemENUMv2(String name, double weight, double radius, SpaceObject ... tails)
     {
         this.name = name;
         this.weight = weight;
         this.radius = radius;
-        this.tails = tails;
-        this.type = type;
+        List<SpaceObject> list = new ArrayList<>();
+        for (SpaceObject tail : tails)
+        {
+            list.add(tail);
+            tail.setHead(this);
+        }
+        this.tails = list;
     }
 
-    SolarSystemENUMv2(String name, double weight, double radius, SpaceObjectType type)
+    SolarSystemENUMv2(String name, double weight, double radius)
     {
         this.name = name;
         this.weight = weight;
         this.radius = radius;
-        this.type = type;
     }
 
 
@@ -94,7 +91,6 @@ public enum SolarSystemENUMv2 implements SpaceObject
     }
 
     public SpaceObject getHead(){
-        if(this.head == null && !this.getType().equals(SpaceObjectType.SUN)) initializeHeads();
         return this.head;
     }
 
@@ -105,16 +101,12 @@ public enum SolarSystemENUMv2 implements SpaceObject
 
     public SpaceObjectType getType()
     {
-        return this.type;
+        return null;
     }
 
-    public void initializeHeads (){
-        for (SolarSystemENUMv2 spaceObject : SolarSystemENUMv2.values()) {
-            spaceObject.setHead(spaceObject.innerGetHead());
-        }
-    }
 
-    private void setHead (SpaceObject head) {
+
+    public void setHead(SpaceObject head) {
         this.head = head;
     }
 

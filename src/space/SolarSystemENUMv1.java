@@ -113,4 +113,12 @@ public enum SolarSystemENUMv1 implements SpaceObject
     {
         return this.type;
     }
+
+    @Override
+    public void setHead(SpaceObject head)
+    {
+
+    }
+
 }
+

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Valko Serhii on 15.03.2016.
  */
-abstract class AbstractSpaceObject implements SpaceObject
+abstract class AbstractSpaceObject
 {
 
     protected static List<SpaceObject> spaceObjectsList = new ArrayList<>();
@@ -42,45 +42,5 @@ abstract class AbstractSpaceObject implements SpaceObject
         this.type = type;
     }
 
-    @Override
-    public String getName()
-    {
-        return name;
-    }
 
-    @Override
-    public double getWeight()
-    {
-        return weight;
-    }
-
-    @Override
-    public double getRadius()
-    {
-        return radius;
-    }
-
-    @Override
-    public List<SpaceObject> getTails()
-    {
-        List<SpaceObject> satellitesList = new ArrayList<>();
-        for (SpaceObject spaceObject : spaceObjectsList)
-        {
-            if (this.equals(spaceObject.getHead())) satellitesList.add(spaceObject);
-        }
-
-        return satellitesList;
-    }
-
-    @Override
-    public SpaceObject getHead()
-    {
-        return this.head;
-    }
-
-    @Override
-    public SpaceObjectType getType()
-    {
-        return this.type;
-    }
 }
