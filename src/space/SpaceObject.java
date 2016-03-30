@@ -23,8 +23,5 @@ interface SpaceObject
 
     SpaceObjectType getType();
 
-
-
-
-
+    void setHead(SpaceObject head);
 }

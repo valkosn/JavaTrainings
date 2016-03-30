@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -57,9 +59,8 @@ public class SolarSystemNew extends AbstractSpaceObject
         {
             if (spaceObject.getName().equals(name)) return spaceObject;
         }
-        throw new IllegalArgumentException("no object");
+        throw new IllegalArgumentException("Object not found");
     }
-
 
     private static void readDB()
     {
@@ -80,4 +81,21 @@ public class SolarSystemNew extends AbstractSpaceObject
             e.printStackTrace();
         }
     }
+
+    public SpaceObject getSpaceObject(String name)
+    {
+        return getSpaceObjectByName(name);
+    }
+
+    public List<SpaceObject> getSpaceObject(SpaceObjectType type)
+    {
+        List<SpaceObject> spaceObjects = new ArrayList<>();
+        for (SpaceObject spaceObject : spaceObjectsList)
+        {
+            if (spaceObject.getType().equals(type)) spaceObjects.add(spaceObject);
+        }
+        return spaceObjects;
+    }
+
+
 }
