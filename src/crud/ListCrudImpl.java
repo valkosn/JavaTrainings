@@ -134,10 +134,10 @@ public class ListCrudImpl
         return true;
     }
 
-    public void save(boolean isReady)
+    public void save(boolean ignoreDelay)
     {
         long currantTime = System.currentTimeMillis();
-        if ((isModify && (lastSave + saveDelay) < currantTime) || isReady)
+        if ((isModify && (lastSave + saveDelay) < currantTime) || ignoreDelay)
         {
             try
             {
