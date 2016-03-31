@@ -22,6 +22,10 @@ public class Row {
     this.quantity = source.substring(i).trim();
   }
 
+  public Row(String productName, String price, String quantity) {
+    this(null, productName, price, quantity);
+  }
+
   public Row(String id, String productName, String price, String quantity) {
     this.id = id == null ? null : id.trim();
     this.productName = productName.trim();
@@ -87,7 +91,18 @@ public class Row {
   }
 
   public static void main(String[] args) {
-    Row row = new Row("Шорты пляжные синие           159.00  12");
+    Row row = new Row("15      Шорты пляжные синие           159.00  12  ");
     System.out.println(row);
+    if (!row.toString().equals("15      Шорты пляжные синие           159.00  12  "))
+    {
+      throw new RuntimeException();
+    }
+
+    row = new Row("Шорты пляжные синие", "159.00", "12");
+    System.out.println(row);
+    if (!row.toString().equals("null    Шорты пляжные синие           159.00  12  "))
+    {
+      throw new RuntimeException();
+    }
   }
 }

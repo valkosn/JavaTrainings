@@ -176,7 +176,7 @@ public class MultiFileCrudImpl implements Crud {
     Row row = null;
     long start = System.currentTimeMillis();
     for (int i = 0; i < n; i++) {
-      row = crud.save(new Row(null, "Шорты пляжные синие", "159.00", "12"));
+      row = crud.save(new Row("Шорты пляжные синие", "159.00", "12"));
     }
     System.out.println("save n: " + n + " lasts: " + (System.currentTimeMillis() - start) + " ms");
     Row testRow = new Row("" + n, "Шорты пляжные синие", "159.00", "12");
