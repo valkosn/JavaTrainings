@@ -143,9 +143,6 @@ public class Solution
         {
             e.printStackTrace();
         }
-
-        //TODO: finish this...
-
         return true;
     }
 
@@ -153,7 +150,6 @@ public class Solution
     {
         updateObjectInCrUD(id, correctLength("", PRODUCT_NAME_LENGTH), correctLength("", PRICE_LENGTH),
                                 correctLength("", QUANTITY_LENGTH));
-        //TODO: implement this...
     }
 
     private static String correctLength(String inputString, int inputLength)
