@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 /**
  * Created by Valko Serhii on 14.03.2016.
  */
-public class Test2
+public class CollectionPerformanceTest_v2
 {
     public static void main(String[] args)
     {

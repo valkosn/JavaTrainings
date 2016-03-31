@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class SergioMakeExercisesFromBook
 {
+    private int a = 6;
     private static boolean maybeEnough(List<String> completedTasks, List<String> allTasks)
     {
         int max = (int) (allTasks.size() * 0.25);
