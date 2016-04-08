@@ -16,6 +16,7 @@ public class Prototype_v2 implements Serializable
     private String name;
     private int age;
     private Singleton_v6 gender;
+    private Car car;
 
     public Prototype_v2(String name, int age, Singleton_v6 gender)
     {
@@ -54,6 +55,16 @@ public class Prototype_v2 implements Serializable
         this.name = name;
     }
 
+    public Car getCar()
+    {
+        return car;
+    }
+
+    public void setCar(Car car)
+    {
+        this.car = car;
+    }
+
     public Prototype_v2 getCopy(){
 
         Prototype_v2 copy = null;
@@ -79,6 +90,6 @@ public class Prototype_v2 implements Serializable
     @Override
     public String toString()
     {
-        return String.join(" ",name, Integer.toString(age), gender.toString());
+        return String.join(" ",name, Integer.toString(age), gender.toString(), car.toString());
     }
 }

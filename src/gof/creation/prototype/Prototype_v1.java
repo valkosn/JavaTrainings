@@ -18,6 +18,7 @@ public class Prototype_v1 implements Cloneable
     private String name;
     private int age;
     private Singleton_v6 gender;
+    private Car car;
 
     public Prototype_v1(String name, int age, Singleton_v6 gender)
     {
@@ -56,6 +57,16 @@ public class Prototype_v1 implements Cloneable
         this.name = name;
     }
 
+    public Car getCar()
+    {
+        return car;
+    }
+
+    public void setCar(Car car)
+    {
+        this.car = car;
+    }
+
     @Override
     public Prototype_v1 clone(){
         try
@@ -72,6 +83,6 @@ public class Prototype_v1 implements Cloneable
     @Override
     public String toString()
     {
-        return String.join(" ",name, Integer.toString(age), gender.toString());
+        return String.join(" ",name, Integer.toString(age), gender.toString(), car.toString());
     }
 }
