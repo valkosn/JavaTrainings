@@ -11,62 +11,16 @@ import java.io.*;
 /**
  * Created by Valko Serhii on 08-Apr-16.
  */
-public class Prototype_v2 implements Serializable
+public class Prototype_v2 extends AbstractPrototype implements Serializable
 {
-    private String name;
-    private int age;
-    private Singleton_v6 gender;
-    private Car car;
-
     public Prototype_v2(String name, int age, Singleton_v6 gender)
     {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
+        super(name, age, gender);
     }
 
-    public Singleton_v6 getGender()
+    @Override
+    public Prototype_v2 clone()
     {
-        return gender;
-    }
-
-    public void setGender(Singleton_v6 gender)
-    {
-        this.gender = gender;
-    }
-
-    public int getAge()
-    {
-        return age;
-    }
-
-    public void setAge(int age)
-    {
-        this.age = age;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public Car getCar()
-    {
-        return car;
-    }
-
-    public void setCar(Car car)
-    {
-        this.car = car;
-    }
-
-    public Prototype_v2 getCopy(){
-
         Prototype_v2 copy = null;
         try
         {
@@ -78,18 +32,11 @@ public class Prototype_v2 implements Serializable
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             copy = (Prototype_v2) objectInputStream.readObject();
-
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
         return copy;
-    }
-
-    @Override
-    public String toString()
-    {
-        return String.join(" ",name, Integer.toString(age), gender.toString(), car.toString());
     }
 }
