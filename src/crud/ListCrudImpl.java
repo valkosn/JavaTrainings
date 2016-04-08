@@ -4,8 +4,6 @@
 
 package crud;
 
-import test.Record;
-
 import java.io.*;
 import java.util.LinkedList;
 
@@ -131,7 +129,7 @@ public class ListCrudImpl
     public boolean reindex()
     {
 
-        return true;
+        return false;
     }
 
     public void save(boolean ignoreDelay)
@@ -154,6 +152,7 @@ public class ListCrudImpl
             }
         }
         lastSave = System.currentTimeMillis();
+        isModify = false;
     }
 
     public void save()
