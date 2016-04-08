@@ -14,6 +14,6 @@ package gof.creation.singleton;
  * Can't be inherited, because ENUMs implicitly extend Enum.class */
 public enum Singleton_v6
 {
-    INSTANCE;
+    MALE, FEMALE;
 
 }
