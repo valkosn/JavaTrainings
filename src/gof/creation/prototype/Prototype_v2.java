@@ -13,10 +13,6 @@ import java.io.*;
  */
 public class Prototype_v2 extends AbstractPrototype implements Serializable
 {
-    public Prototype_v2(String name, int age, Singleton_v6 gender)
-    {
-        super(name, age, gender);
-    }
 
     @Override
     public Prototype_v2 clone()

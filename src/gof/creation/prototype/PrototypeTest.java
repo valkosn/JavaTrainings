@@ -4,6 +4,7 @@
 
 package gof.creation.prototype;
 
+import gof.creation.factoryMethod.PrototypeImplementationFactory;
 import gof.creation.singleton.Singleton_v6;
 
 /**
@@ -20,16 +21,11 @@ public class PrototypeTest
 
     static void test(Class<? extends AbstractPrototype> clazz) throws Exception
     {
-        AbstractPrototype prototype_1;
-        AbstractPrototype prototype_2;
-        if (clazz == Prototype_v1.class) prototype_1 = new Prototype_v1("Orest", 30, Singleton_v6.MALE);
-        else if (clazz == Prototype_v2.class) prototype_1 = new Prototype_v2("Orest", 30, Singleton_v6.MALE);
-        else throw new IllegalArgumentException("Incorrect argument");
-
-        prototype_1.setCar(new Car("Ford"));
+        AbstractPrototype prototype_1 = PrototypeImplementationFactory.getPrototypeImpl(clazz);
+        prototype_1.setName("Orest").setAge(30).setGender(Singleton_v6.MALE).setCar(new Car("Ford"));
         System.out.println(clazz.getSimpleName() + "\n" + prototype_1.toString());
 
-        prototype_2 = prototype_1.clone();
+        AbstractPrototype prototype_2 = prototype_1.clone();
         prototype_2.setName("Serg");
         prototype_2.setAge(29);
         prototype_2.getCar().setModel("Opel");

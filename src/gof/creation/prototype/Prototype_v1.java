@@ -15,10 +15,7 @@ import gof.creation.singleton.Singleton_v6;
  */
 public class Prototype_v1 extends AbstractPrototype implements Cloneable
 {
-    public Prototype_v1(String name, int age, Singleton_v6 gender)
-    {
-        super(name, age, gender);
-    }
+
 
     @Override
     public Prototype_v1 clone() throws CloneNotSupportedException

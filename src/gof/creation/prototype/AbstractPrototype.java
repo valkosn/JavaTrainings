@@ -18,21 +18,16 @@ public abstract class AbstractPrototype implements Serializable
     private Singleton_v6 gender;
     private Car car;
 
-    public AbstractPrototype(String name, int age, Singleton_v6 gender)
-    {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
 
     public Singleton_v6 getGender()
     {
         return gender;
     }
 
-    public void setGender(Singleton_v6 gender)
+    public AbstractPrototype setGender(Singleton_v6 gender)
     {
         this.gender = gender;
+        return this;
     }
 
     public int getAge()
@@ -40,9 +35,10 @@ public abstract class AbstractPrototype implements Serializable
         return age;
     }
 
-    public void setAge(int age)
+    public AbstractPrototype setAge(int age)
     {
         this.age = age;
+        return this;
     }
 
     public String getName()
@@ -50,9 +46,10 @@ public abstract class AbstractPrototype implements Serializable
         return name;
     }
 
-    public void setName(String name)
+    public AbstractPrototype setName(String name)
     {
         this.name = name;
+        return this;
     }
 
     public Car getCar()
@@ -60,9 +57,10 @@ public abstract class AbstractPrototype implements Serializable
         return car;
     }
 
-    public void setCar(Car car)
+    public AbstractPrototype setCar(Car car)
     {
         this.car = car;
+        return this;
     }
 
     @Override
